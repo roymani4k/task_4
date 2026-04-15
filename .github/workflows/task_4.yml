@@ -1,0 +1,12 @@
+on:
+  pull_request_target:
+
+jobs:
+  d:
+    runs-on: ubuntu-latest
+    env:
+      PAT: ${{ secrets.WORKFLOW_WRITE_PAT }}
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      - run: |
+          echo 'New branch from dependabot: ${{ github.event.pull_request.head.ref }}'
